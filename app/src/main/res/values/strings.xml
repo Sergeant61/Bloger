@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Blog Uygulaması</string>
+    <string name="kullan_c_ad">Kullanıcı Adı</string>
+    <string name="parola">Parola</string>
+    <string name="giri">Giriş</string>
+    <string name="prompt_message">Mesaj</string>
+    <string name="action_send">Gönder</string>
+    <string name="app_baslik">Konular</string>
+    <string name="konu_ekle">Konu Ekle</string>
+    <string name="konu_sil">Konu Sil</string>
+</resources>

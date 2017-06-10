@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    android:orientation="vertical"
+    android:elevation="10dp"
+    android:background="@drawable/satir_arkaplan"
+    android:padding="10dp"
+    android:weightSum="1">
+
+        <TextView
+            android:id="@+id/baslik"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.35" />
+
+        <TextView
+            android:layout_marginTop="5dp"
+            android:id="@+id/user"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right" />
+
+
+
+</LinearLayout>
