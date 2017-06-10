@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,6 +22,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.recep.bloger.adaptor.OzelAdapter;
 import com.recep.bloger.converter.GsonConverter;
+import com.recep.bloger.entity.User;
 import com.recep.bloger.model.BasliklarReturn;
 import com.recep.bloger.model.RolEnum;
 
@@ -31,7 +33,8 @@ public class BasliklarActivity extends AppCompatActivity {
 
     private GsonConverter gsonConverter = new GsonConverter();
     private String URL = "http://192.168.1.60:8080/BlogWebServis/rest/servis/getbasliklar/";
-    private static String kull=null,pass=null,roll=null;
+    private String URL2 = "http://192.168.1.60:8080/BlogWebServis/rest/servis/getbasliklar/";
+    private static String response=null;
     private ListView listemiz;
 
     @Override
@@ -40,12 +43,8 @@ public class BasliklarActivity extends AppCompatActivity {
         setContentView(R.layout.activity_basliklar);
 
         Intent intent = getIntent();
-        kull =intent.getStringExtra("user");
-        pass =intent.getStringExtra("pass");
-        roll =intent.getStringExtra("roll");
-
+        response =intent.getStringExtra("user");
         listemiz = (ListView) findViewById(R.id.liste);
-
         getBasliklar(URL);
 
     }
@@ -56,7 +55,9 @@ public class BasliklarActivity extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.basliklar_menu, menu);
 
-        if(!RolEnum.ADMIN.getId().equals(roll)){
+        User user = gsonConverter.getStringUser(response);
+
+        if(!user.getRol().isRol_konuIslemleri()){
 
             MenuItem item = menu.findItem(R.id.konuEkle);
             item.setVisible(false);
@@ -64,6 +65,12 @@ public class BasliklarActivity extends AppCompatActivity {
             item2.setVisible(false);
         }
 
+        if(!user.getRol().isRol_kullaniciIslemleri()) {
+            MenuItem item3 = menu.findItem(R.id.kullaniciEkle);
+            item3.setVisible(false);
+            MenuItem item4 = menu.findItem(R.id.kullaniciSil);
+            item4.setVisible(false);
+        }
 
         return true;
     }
@@ -74,10 +81,15 @@ public class BasliklarActivity extends AppCompatActivity {
 
         switch (item.getItemId()){
             case R.id.konuEkle:
-
                 break;
             case R.id.konuSil:
-
+                break;
+            case R.id.kullaniciEkle:
+                Intent intent = new Intent(BasliklarActivity.this,UserAddActivity.class);
+                intent.putExtra("user",response);
+                startActivity(intent);
+                break;
+            case R.id.kullaniciSil:
                 break;
         }
 
@@ -117,6 +129,29 @@ public class BasliklarActivity extends AppCompatActivity {
 
                             }
                         });
+
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        // error
+                        Log.d("Error.Response", "response");
+                    }
+                }
+        );
+        queue.add(postRequest);
+    }
+
+    private void getKullaniciEkle(String URL){
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest postRequest = new StringRequest(Request.Method.GET, URL,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
 
                     }
                 },

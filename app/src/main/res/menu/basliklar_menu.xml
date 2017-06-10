@@ -4,4 +4,7 @@
     <item android:title="@string/konu_ekle" android:id="@+id/konuEkle"/>
     <item android:title="@string/konu_sil" android:id="@+id/konuSil"/>
 
+    <item android:title="@string/kullanici_ekle" android:id="@+id/kullaniciEkle"/>
+    <item android:title="@string/kullanici_sil" android:id="@+id/kullaniciSil"/>
+
 </menu>

@@ -17,8 +17,8 @@ import com.android.volley.toolbox.Volley;
 import com.easyandroidanimations.library.Animation;
 import com.easyandroidanimations.library.BounceAnimation;
 import com.recep.bloger.converter.GsonConverter;
+import com.recep.bloger.entity.User;
 import com.recep.bloger.model.UserModel;
-import com.recep.bloger.model.UserReturn;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,10 +27,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     private String URL = "http://192.168.1.60:8080/BlogWebServis/rest/servis/post/";
+    private String URL2 = "http://192.168.1.60:8080/BlogWebServis/rest/servis/postDao/";
     private EditText etkullanici;
     private EditText etParola;
     private UserModel userModel;
     private GsonConverter gsonConverter = new GsonConverter();
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        postDao(URL2);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         switch (view.getId()){
             case R.id.btnGiris:
                 userModel = new UserModel();
-                if(!etkullanici.getText().toString().equals("") || !etParola.getText().toString().equals("")) {
+                if(!etkullanici.getText().toString().equals("") && !etParola.getText().toString().equals("")) {
 
                     userModel.setKullaniciAdi(etkullanici.getText().toString());
                     userModel.setParola(etParola.getText().toString());
@@ -82,15 +89,12 @@ public class MainActivity extends AppCompatActivity {
                         //Log.d("RECEP", response);
                         if(!response.equals("YOK")){
                             Intent intent = new Intent(MainActivity.this,BasliklarActivity.class);
-                            UserReturn userReturn = gsonConverter.getStringUser(response);
+                            User user = gsonConverter.getStringUser(response);
 
-                            String kull = userReturn.getKullaniciAdi();
-                            String pass = userReturn.getParola();
-                            String roll = userReturn.getRol();
+                            String kull = user.getUsername();
 
-                            intent.putExtra("user",kull);
-                            intent.putExtra("pass",pass);
-                            intent.putExtra("roll",roll);
+                            intent.putExtra("user",response);
+
                             Toast.makeText(MainActivity.this, "Hoşgeldiniz " + kull, Toast.LENGTH_SHORT).show();
                             startActivity(intent);
 
@@ -106,6 +110,7 @@ public class MainActivity extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         // error
                         Log.d("Error.Response", "response");
+                        Toast.makeText(MainActivity.this, "İnternet bağlantınızı kontrol ediniz.", Toast.LENGTH_LONG).show();
                     }
                 }
         ) {
@@ -118,6 +123,27 @@ public class MainActivity extends AppCompatActivity {
                 return params;
             }
         };
+        queue.add(postRequest);
+    }
+
+    private void postDao(String URL){
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest postRequest = new StringRequest(Request.Method.POST, URL,
+                new Response.Listener<String>()
+                {
+                    @Override
+                    public void onResponse(String response) {
+
+                    }
+                },
+                new Response.ErrorListener()
+                {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                    }
+                }
+        );
         queue.add(postRequest);
     }
 }

@@ -2,8 +2,8 @@ package com.recep.bloger.converter;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.recep.bloger.entity.User;
 import com.recep.bloger.model.BasliklarReturn;
-import com.recep.bloger.model.UserReturn;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -19,12 +19,12 @@ public class GsonConverter {
         return json;
     }
 
-    public UserReturn getStringUser(String json){
+    public User getStringUser(String json){
 
         Gson gson = new Gson();
-        UserReturn userReturn = gson.fromJson(json,UserReturn.class);
+        User user = gson.fromJson(json,User.class);
 
-        return userReturn;
+        return user;
     }
 
     public List<BasliklarReturn> getStringBasliklarReturnList(String json){

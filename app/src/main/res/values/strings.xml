@@ -8,4 +8,11 @@
     <string name="app_baslik">Konular</string>
     <string name="konu_ekle">Konu Ekle</string>
     <string name="konu_sil">Konu Sil</string>
+    <string name="kullanici_ekle">Kullanıcı Ekle</string>
+    <string name="kullanici_sil">Kullanıcı Sil</string>
+    <string name="kullan_c_lemleri">Kullanıcı İşlemleri</string>
+    <string name="konu_lemleri">Konu İşlemleri</string>
+    <string name="kaydet">Kaydet</string>
+    <string name="parola_tekrar">Paralo Tekrar</string>
+    <string name="app_user_add">Kullanıcı Kaydet</string>
 </resources>
