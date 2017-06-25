@@ -2,6 +2,8 @@ package com.recep.bloger.converter;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.recep.bloger.entity.Basliklar;
+import com.recep.bloger.entity.Mesaj;
 import com.recep.bloger.entity.User;
 import com.recep.bloger.model.BasliklarReturn;
 
@@ -39,4 +41,45 @@ public class GsonConverter {
         return basliklarReturns;
     }
 
+    public List<User> getStringUserList(String json){
+
+        Gson gson = new Gson();
+
+        Type listType = new TypeToken<ArrayList<User>>(){}.getType();
+
+        List<User> users =gson.fromJson(json,listType);
+
+        return users;
+    }
+
+    public Basliklar getStringBasliklar(String json) {
+        Gson gson = new Gson();
+        Basliklar basliklar = gson.fromJson(json,Basliklar.class);
+
+        return basliklar;
+    }
+
+    public List<Basliklar> getStringBasliklarList(String json) {
+
+        Gson gson = new Gson();
+
+        Type listType = new TypeToken<ArrayList<Basliklar>>(){}.getType();
+
+        List<Basliklar> basliklar = gson.fromJson(json,listType);
+
+
+        return basliklar;
+    }
+
+    public List<Mesaj> getStringMesajList(String json) {
+
+        Gson gson = new Gson();
+
+        Type listType = new TypeToken<ArrayList<Mesaj>>(){}.getType();
+
+        List<Mesaj> mesajs = gson.fromJson(json,listType);
+
+
+        return mesajs;
+    }
 }

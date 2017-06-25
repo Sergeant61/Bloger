@@ -25,35 +25,28 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    private String URL = "http://192.168.1.60:8080/BlogWebServis/rest/servis/post/";
-    private String URL2 = "http://192.168.1.60:8080/BlogWebServis/rest/servis/postDao/";
+    private GsonConverter gsonConverter = new GsonConverter();
+    private String URL,URL2;
     private EditText etkullanici;
     private EditText etParola;
-    private UserModel userModel;
-    private GsonConverter gsonConverter = new GsonConverter();
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        postDao(URL2);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        URL = getResources().getString(R.string.ipPort) + getResources().getString(R.string.post);
+        URL2 = getResources().getString(R.string.ipPort) + getResources().getString(R.string.postDao);
+        postDao(URL2);
         etkullanici = (EditText) findViewById(R.id.etKullanici);
         etParola = (EditText) findViewById(R.id.etParola);
 
     }
 
     public void onClickGiris(View view) {
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.btnGiris:
-                userModel = new UserModel();
-                if(!etkullanici.getText().toString().equals("") && !etParola.getText().toString().equals("")) {
+                UserModel userModel = new UserModel();
+                if (!etkullanici.getText().toString().equals("") && !etParola.getText().toString().equals("")) {
 
                     userModel.setKullaniciAdi(etkullanici.getText().toString());
                     userModel.setParola(etParola.getText().toString());
@@ -62,14 +55,14 @@ public class MainActivity extends AppCompatActivity {
                     post(URL, value);
 
                 } else {
-                    if(etkullanici.getText().toString().equals("")) {
+                    if (etkullanici.getText().toString().equals("")) {
                         new BounceAnimation(etkullanici).setNumOfBounces(2).setDuration(Animation.DURATION_SHORT).animate();
-                        Toast.makeText(this, "Kullanıcı adı bölümü boş bırakılamaz.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, getResources().getString(R.string.user_check_hata_1), Toast.LENGTH_SHORT).show();
                     }
 
-                    if(etParola.getText().toString().equals("")) {
+                    if (etParola.getText().toString().equals("")) {
                         new BounceAnimation(etParola).setNumOfBounces(2).setDuration(Animation.DURATION_SHORT).animate();
-                        Toast.makeText(this, "Parola bölümü boş bırakılamaz.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, getResources().getString(R.string.user_check_hata_2), Toast.LENGTH_SHORT).show();
                     }
                 }
                 break;
@@ -77,47 +70,42 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void post(String URL, final String value){
+    private void post(String URL, final String value) {
 
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest postRequest = new StringRequest(Request.Method.POST, URL,
-                new Response.Listener<String>()
-                {
+                new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         // response
-                        //Log.d("RECEP", response);
-                        if(!response.equals("YOK")){
-                            Intent intent = new Intent(MainActivity.this,BasliklarActivity.class);
+                        if (!response.equals(getResources().getString(R.string.yok))) {
+                            Intent intent = new Intent(MainActivity.this, BasliklarActivity.class);
                             User user = gsonConverter.getStringUser(response);
 
                             String kull = user.getUsername();
 
-                            intent.putExtra("user",response);
+                            intent.putExtra("user", response);
 
-                            Toast.makeText(MainActivity.this, "Hoşgeldiniz " + kull, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(MainActivity.this, getResources().getString(R.string.hosgeldiniz) + " " + kull, Toast.LENGTH_LONG).show();
                             startActivity(intent);
 
                         } else {
-                            Toast.makeText(MainActivity.this, "Kullanıcı adı veya Parola hatalı.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, R.string.user_check_hata_3, Toast.LENGTH_LONG).show();
                         }
 
                     }
                 },
-                new Response.ErrorListener()
-                {
+                new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // error
-                        Log.d("Error.Response", "response");
-                        Toast.makeText(MainActivity.this, "İnternet bağlantınızı kontrol ediniz.", Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, getResources().getString(R.string.hata_add_6), Toast.LENGTH_LONG).show();
                     }
                 }
         ) {
             @Override
-            protected Map<String, String> getParams()
-            {
-                Map<String, String>  params = new HashMap<String, String>();
+            protected Map<String, String> getParams() {
+                Map<String, String> params = new HashMap<>();
                 params.put("json", value);
 
                 return params;
@@ -126,19 +114,17 @@ public class MainActivity extends AppCompatActivity {
         queue.add(postRequest);
     }
 
-    private void postDao(String URL){
+    private void postDao(String URL) {
 
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest postRequest = new StringRequest(Request.Method.POST, URL,
-                new Response.Listener<String>()
-                {
+                new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
 
                     }
                 },
-                new Response.ErrorListener()
-                {
+                new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                     }

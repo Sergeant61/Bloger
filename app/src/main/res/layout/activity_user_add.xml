@@ -59,6 +59,15 @@
             android:layout_marginTop="10dp"
             android:text="@string/kaydet" />
 
+        <Button
+            android:visibility="gone"
+            android:id="@+id/btnGuncelle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:onClick="onClickKaydet"
+            android:text="@string/gun" />
+
 
     </LinearLayout>
 

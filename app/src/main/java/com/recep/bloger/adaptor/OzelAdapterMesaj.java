@@ -9,36 +9,34 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.recep.bloger.R;
+import com.recep.bloger.entity.Mesaj;
 import com.recep.bloger.model.BasliklarReturn;
 import com.recep.bloger.model.MesajModel;
 
 import java.util.List;
 
-/**
- * Created by vektorel on 03.06.2017.
- */
 public class OzelAdapterMesaj extends BaseAdapter {
 
     private LayoutInflater mInflater;
-    private List<MesajModel> mMesajModel;
+    private List<Mesaj> mMesaj;
 
-    public OzelAdapterMesaj(Activity activity, List<MesajModel> mesajModel) {
+    public OzelAdapterMesaj(Activity activity, List<Mesaj> mesaj) {
         //XML'i alıp View'a çevirecek inflater'ı örnekleyelim
         mInflater = (LayoutInflater) activity.getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
         //gösterilecek listeyi de alalım
-        mMesajModel = mesajModel;
+        mMesaj = mesaj;
     }
 
     @Override
     public int getCount() {
-        return mMesajModel.size();
+        return mMesaj.size();
     }
 
     @Override
-    public MesajModel getItem(int position) {
+    public Mesaj getItem(int position) {
         //şöyle de olabilir: public Object getItem(int position)
-        return mMesajModel.get(position);
+        return mMesaj.get(position);
     }
 
     @Override
@@ -51,29 +49,18 @@ public class OzelAdapterMesaj extends BaseAdapter {
         View sag_mesaj,sol_mesaj;
 
         sag_mesaj = mInflater.inflate(R.layout.mesaj_sag_layout, null);
-        sol_mesaj = mInflater.inflate(R.layout.mesaj_sol_layout, null);
 
         TextView sagMesaj = (TextView) sag_mesaj.findViewById(R.id.mesaj);
         TextView sagDate = (TextView) sag_mesaj.findViewById(R.id.saat);
+        TextView etUser = (TextView) sag_mesaj.findViewById(R.id.etUser);
 
-        TextView solMesaj = (TextView) sol_mesaj.findViewById(R.id.mesaj);
-        TextView solDate = (TextView) sol_mesaj.findViewById(R.id.saat);
+        Mesaj mesaj = mMesaj.get(position);
 
-        MesajModel mesajModel = mMesajModel.get(position);
-
-        if (mesajModel.isMesajGonderen()){
-
-            sagMesaj.setText(mesajModel.getMesaj());
-            sagDate.setText(mesajModel.getTarih().toString());
-
+            sagMesaj.setText(mesaj.getMesaj());
+            if(mesaj.getTarih() != null) {
+                sagDate.setText(String.valueOf(mesaj.getTarih().getHours() + ":" + mesaj.getTarih().getMinutes()));
+            }
+            etUser.setText(mesaj.getUser().getUsername());
             return sag_mesaj;
-        } else {
-
-            solMesaj.setText(mesajModel.getMesaj());
-            solDate.setText(mesajModel.getTarih().toString());
-
-            return sol_mesaj;
-        }
-
     }
 }

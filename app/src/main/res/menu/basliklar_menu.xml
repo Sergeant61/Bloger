@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="@string/konu_ekle" android:id="@+id/konuEkle"/>
-    <item android:title="@string/konu_sil" android:id="@+id/konuSil"/>
-
-    <item android:title="@string/kullanici_ekle" android:id="@+id/kullaniciEkle"/>
-    <item android:title="@string/kullanici_sil" android:id="@+id/kullaniciSil"/>
+    <item
+        android:id="@+id/konuEkle"
+        android:title="@string/konu_ekle" />
+    <!--<item-->
+        <!--android:id="@+id/konuSil"-->
+        <!--android:title="@string/konu_sil" />-->
+    <item
+        android:id="@+id/kullaniciEkle"
+        android:title="@string/kullanici_ekle" />
+    <item
+        android:id="@+id/kullaniciSil"
+        android:title="@string/kullanici_sil" />
 
 </menu>

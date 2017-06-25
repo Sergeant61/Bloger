@@ -7,12 +7,57 @@
     <string name="action_send">Gönder</string>
     <string name="app_baslik">Konular</string>
     <string name="konu_ekle">Konu Ekle</string>
-    <string name="konu_sil">Konu Sil</string>
+    <string name="konu_sil">Konu Listele</string>
     <string name="kullanici_ekle">Kullanıcı Ekle</string>
-    <string name="kullanici_sil">Kullanıcı Sil</string>
+    <string name="kullanici_sil">Kullanıcı Listele</string>
     <string name="kullan_c_lemleri">Kullanıcı İşlemleri</string>
     <string name="konu_lemleri">Konu İşlemleri</string>
     <string name="kaydet">Kaydet</string>
     <string name="parola_tekrar">Paralo Tekrar</string>
     <string name="app_user_add">Kullanıcı Kaydet</string>
+    <string name="kullan_list">Kullanıcı Listesi</string>
+    <string name="konu_baslik">Konu Başlığı</string>
+    <string name="konu">Konu</string>
+    <string name="gun">Güncelle</string>
+    <string name="kayit_basarili">Kayıt Başarılı</string>
+    <string name="kullanici_gun">Kullanıcı Güncelle</string>
+    <string name="hata_add_1">Girdiğiniz parolalar eşleşmiyor.</string>
+    <string name="hata_add_2">Kullanıcı adı bölümü boş bırakılamaz.</string>
+    <string name="hata_add_3">Parola bölümü boş bırakılamaz.</string>
+    <string name="hata_add_4">Girdiğiniz kullanıcı adı kullanılmaktadır. Farklı bir kullanıcı adı girin.</string>
+    <string name="hata_add_5">İnternet bağlantınızı kontrol ediniz. Ve ya Girdiğiniz kullanıcı adı kullanılmaktadır. Farklı bir kullanıcı adı girin.</string>
+    <string name="hata_add_6">İnternet bağlantınızı kontrol ediniz.</string>
+    <string name="bit_hata_olustu">Bir hata oluştu. İşlem Başarısız.</string>
+    <string name="user_check_hata_1">Kullanıcı adı bölümü boş bırakılamaz.</string>
+    <string name="user_check_hata_2">Parola bölümü boş bırakılamaz.</string>
+    <string name="user_check_hata_3">Kullanıcı adı veya Parola hatalı.</string>
+    <string name="islem_basarili">İşleminiz Başarılı.</string>
+    <string name="hosgeldiniz">Hoşgeldiniz</string>
+    <string name="dialog_app_title">Blog Uygulaması</string>
+    <string name="dialog_message_1">Ne yapmak istersiniz ?</string>
+    <string name="dialog_message_2">Silmek istediğinizden emin misiniz ?</string>
+    <string name="dialog_message_3">Güncellemek isediğinizden emin misiniz ?</string>
+    <string name="dialog_btn_guncelle">Güncelle</string>
+    <string name="dialog_btn_sil">Sil</string>
+    <string name="dialog_btn_evet">Evet</string>
+    <string name="dialog_btn_hayir">Hayır</string>
+    <string name="dialog_hata_1">Silmek istediğiniz mevcut kullanıcının, açmış olduğu konusu bulunmaktadır. Konuları sildikten sonra tekrar deneyiniz.</string>
+
+    <string name="yok">YOK</string>
+
+    <string name="ipPort">http://192.168.43.140:8080/</string>
+    <string name="postKullAdd">BlogWebServis/rest/servis/postKullAdd/</string>
+    <string name="postKullUpdate">BlogWebServis/rest/servis/postKullUpdate/</string>
+    <string name="postKullList">BlogWebServis/rest/servis/postKullList/</string>
+    <string name="postsil">BlogWebServis/rest/servis/postsil/</string>
+    <string name="getbasliklar">BlogWebServis/rest/servis/getbasliklar/</string>
+    <string name="postKonuSil">BlogWebServis/rest/servis/postKonuSil/</string>
+    <string name="postGetMesajList">BlogWebServis/rest/servis/postGetMesajList/</string>
+    <string name="postMesajAdd">BlogWebServis/rest/servis/postMesajAdd/</string>
+    <string name="postMesajSil">BlogWebServis/rest/servis/postMesajSil/</string>
+    <string name="postKonuAdd">BlogWebServis/rest/servis/postKonuAdd/</string>
+    <string name="post">BlogWebServis/rest/servis/post/</string>
+    <string name="postDao">BlogWebServis/rest/servis/postDao/</string>
+
+
 </resources>

@@ -25,10 +25,15 @@
         <activity
             android:name=".ChatActivity"
             android:theme="@style/ChatTheme" />
-
-        <activity android:name=".UserAddActivity"
-            android:theme="@style/ChatTheme"
-            android:label="@string/app_user_add"/>
+        <activity
+            android:name=".UserAddActivity"
+            android:label="@string/app_user_add"
+            android:theme="@style/ChatTheme" />
+        <activity
+            android:name=".UserlistActivity"
+            android:label="@string/kullan_list"
+            android:theme="@style/ChatTheme" />
+        <activity android:name=".KonuAddActivity"></activity>
     </application>
 
 </manifest>

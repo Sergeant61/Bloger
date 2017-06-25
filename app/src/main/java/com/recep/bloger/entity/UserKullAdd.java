@@ -1,20 +1,15 @@
 package com.recep.bloger.entity;
 
-public class User {
+public class UserKullAdd {
 
 	private int id;
 
 	private String username;
 
-	private String password;
-
 	private Rol rol;
 
-	private UserKullAdd userKullAdd;
-
-	public User(){
+	public UserKullAdd(){
 		rol = new Rol();
-		userKullAdd = new UserKullAdd();
 	}
 
 	public int getId() {
@@ -33,14 +28,6 @@ public class User {
 		this.username = username;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public Rol getRol() {
 		return rol;
 	}
@@ -49,11 +36,4 @@ public class User {
 		this.rol = rol;
 	}
 
-	public UserKullAdd getUserKullAdd() {
-		return userKullAdd;
-	}
-
-	public void setUserKullAdd(UserKullAdd userKullAdd) {
-		this.userKullAdd = userKullAdd;
-	}
 }

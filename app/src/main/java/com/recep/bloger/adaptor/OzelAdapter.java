@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.recep.bloger.R;
+import com.recep.bloger.entity.Basliklar;
 import com.recep.bloger.model.BasliklarReturn;
 
 import java.util.List;
@@ -20,25 +21,25 @@ import java.util.List;
 public class OzelAdapter extends BaseAdapter {
 
     private LayoutInflater mInflater;
-    private List<BasliklarReturn> mBasliklarReturn;
+    private List<Basliklar> mBasliklar;
 
-    public OzelAdapter(Activity activity, List<BasliklarReturn> basliklarReturn) {
+    public OzelAdapter(Activity activity, List<Basliklar> basliklar) {
         //XML'i alıp View'a çevirecek inflater'ı örnekleyelim
         mInflater = (LayoutInflater) activity.getSystemService(
                 Context.LAYOUT_INFLATER_SERVICE);
         //gösterilecek listeyi de alalım
-        mBasliklarReturn = basliklarReturn;
+        mBasliklar = basliklar;
     }
 
     @Override
     public int getCount() {
-        return mBasliklarReturn.size();
+        return mBasliklar.size();
     }
 
     @Override
-    public BasliklarReturn getItem(int position) {
+    public Basliklar getItem(int position) {
         //şöyle de olabilir: public Object getItem(int position)
-        return mBasliklarReturn.get(position);
+        return mBasliklar.get(position);
     }
 
     @Override
@@ -56,11 +57,10 @@ public class OzelAdapter extends BaseAdapter {
         TextView user =
                 (TextView) satirView.findViewById(R.id.user);
 
+        Basliklar basliklar = mBasliklar.get(position);
 
-        BasliklarReturn basliklarReturn = mBasliklarReturn.get(position);
-
-        baslik.setText(basliklarReturn.getBaslik());
-        user.setText(basliklarReturn.getKullaniciAdi());
+        baslik.setText(basliklar.getBaslik());
+        user.setText(basliklar.getUser().getUsername());
 
         return satirView;
     }

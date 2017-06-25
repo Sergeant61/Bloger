@@ -4,19 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="@dimen/anaSayfa"
     android:orientation="vertical"
     tools:context="com.recep.bloger.ChatActivity">
 
-    <android.support.v7.widget.RecyclerView
+    <TextView
+        android:id="@+id/twKonu"
+        android:textStyle="bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ListView
+        android:paddingTop="10dp"
         android:background="@android:color/transparent"
         android:id="@+id/messages"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:paddingLeft="@dimen/anaSayfa"
-        android:paddingRight="@dimen/anaSayfa"
-        android:scrollbarStyle="outsideOverlay"
-        android:scrollbars="vertical" />
+        android:dividerHeight="10dp"
+        android:divider="@android:color/transparent"
+        />
 
     <LinearLayout
         android:paddingLeft="5dp"
@@ -27,7 +34,6 @@
         android:gravity="center_vertical">
 
         <EditText
-            android:onClick="onClickGonder"
             android:id="@+id/message_input"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -37,6 +43,7 @@
             android:inputType="textMultiLine"/>
 
         <ImageButton
+            android:onClick="onClickGonder"
             android:id="@+id/send_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
